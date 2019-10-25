@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 94ebb7820155b6b4898b10b2e7ffa5d4
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - submarine: {fileID: -7568928209453830429, guid: e2e298af6a884b94ca99f5b310445f04,
+      type: 3}
+  - level: {fileID: 11400000, guid: 8c7de8d6c664fa24689556c9ab492fc4, type: 2}
+  - scoreGame: {fileID: 8385282380271644799, guid: 7d6d914b192c47b48b299ed180cee269,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
