@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -8,10 +9,18 @@ using UnityEngine.UI;
 public class GM_Play : MonoBehaviour
 {
     private Dictionary<System.Type, IEnnemieObject[]> globalListe;
+    private Text scoreGame;
+    private Text TextQuests;
 
     public SubmarineController submarine;
-    public Level[] levels;
-    public Text scoreGame;
+    public List<Level> levels;
+
+    [Header("Quests")]
+    public Quests quests;
+    public int poulpekKill = 0;
+    public int sharkKill = 0;
+    private int actualQuests = -1;
+    private bool firstLoad = true;
 
     //score de la partie
     public int score = 0;
@@ -68,6 +77,12 @@ public class GM_Play : MonoBehaviour
     public float timeBetweenShoot = 1.5f;
     public float removeIntoTime = 0.01f;
     
+    // Timer pour les levels et les quests
+    private int actualLevel = -1;
+    private int timeBeforeQuests = 20;
+    private int timeAfficheQuests = 4;
+    private float timer = -4;
+
     public static GM_Play gm = null;
 
     private void Awake()
@@ -85,7 +100,6 @@ public class GM_Play : MonoBehaviour
     {
         Attribute();
         Init();
-        GlobalInvoke();
     }
 
     /*
@@ -94,6 +108,23 @@ public class GM_Play : MonoBehaviour
     void Update()
     {
         score++;
+        
+        timer += Time.deltaTime;
+        if ((timer > timeBeforeQuests && timer < timeBeforeQuests + timeAfficheQuests) || timer < 0)
+        {
+            this.transform.Find("InkEcran").gameObject.SetActive(false);
+            displayInk = 0;
+            AfficheQuests();
+        }
+
+        else if ((timer > timeBeforeQuests + timeAfficheQuests) || firstLoad)
+        {
+            firstLoad = false;
+            TextQuests.gameObject.SetActive(false);
+            actualLevel = (++actualLevel) % levels.Count == 0 ? 0 : actualLevel;
+            GlobalInvoke(actualLevel);
+            timer = 0;
+        }
     }
 
     /*
@@ -116,7 +147,9 @@ public class GM_Play : MonoBehaviour
      */
     private void Init()
     {
-        this.scoreGame.gameObject.SetActive(false);
+        scoreGame = this.transform.Find("Canvas/Score").GetComponentInChildren<Text>();
+        TextQuests = this.transform.Find("Canvas/Quests").GetComponentInChildren<Text>();
+        scoreGame.gameObject.SetActive(false);
 
         this.transform.Find("InkEcran").gameObject.SetActive(false);
 
@@ -146,16 +179,16 @@ public class GM_Play : MonoBehaviour
     /*
      * gènere l'ensemble des invoque en fonction de "level"
      */
-    private void GlobalInvoke()
+    private void GlobalInvoke(int ind)
     {
-        foreach (Level level in levels)
-            foreach (ObjectPos elem in level.objects)
-                if (elem.type == Object.Shark)
+        foreach (ObjectPos elem in levels[ind].objects)
+            if (elem.type == global::myGameObject.Shark)
                 StartCoroutine(PullObject<Shark>(elem.posX, posX_EndMap, convertPosY[(int)elem.posY - 1]));
-            else if (elem.type == Object.Poulpe)
+            else if (elem.type == global::myGameObject.Poulpe)
                 StartCoroutine(PullObject<Poulpe>(elem.posX, posX_EndMap, convertPosY[(int)elem.posY - 1]));
-            else if (elem.type == Object.Rock)
+            else if (elem.type == global::myGameObject.Rock)
                 StartCoroutine(PullObject<Rock>(elem.posX, posX_EndMap, convertPosY[(int)elem.posY - 1]));
+
     }
 
     /*
@@ -163,7 +196,8 @@ public class GM_Play : MonoBehaviour
      */
     public IEnumerator PullObject<T>(int delayTime,float posX, float posY) where T : IEnnemieObject
     {
-        yield return new WaitForSeconds(delayTime);
+        if (delayTime == 0) yield return new WaitForSeconds(delayTime);
+        else yield return new WaitForSeconds(delayTime - (0.7f * (delayTime - 1)));
         
         foreach (T elem in globalListe[typeof(T)])
         {
@@ -209,5 +243,37 @@ public class GM_Play : MonoBehaviour
         Time.timeScale = 1f;
 
         SceneManager.LoadScene("Start");
+    }
+
+    /*
+     * Affiche les quetes
+     */
+    private void AfficheQuests()
+    {
+        TextQuests.text = "";
+        TextQuests.gameObject.SetActive(true);
+
+        if (actualQuests == -1 || ConditionComplete())
+            actualQuests = (UnityEngine.Random.Range(1, quests.objects.Count) - 1);
+
+        TextQuests.text = quests.objects[actualQuests].description +
+                            "\n" + (quests.objects[actualQuests].type == Enemy.Shark ? sharkKill.ToString() : poulpekKill.ToString()) +
+                            " / " + quests.objects[actualQuests].number.ToString();
+    }
+
+    /*
+     * Verifie si la quete courante est complete
+     */
+    private Boolean ConditionComplete()
+    {
+        if (quests.objects[actualQuests].type == Enemy.Shark && sharkKill >= quests.objects[actualQuests].number ||
+            quests.objects[actualQuests].type == Enemy.Poulpe && poulpekKill >= quests.objects[actualQuests].number)
+        {
+            sharkKill = 0;
+            poulpekKill = 0;
+            return true;
+        }
+        
+        return false;
     }
 }

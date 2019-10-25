@@ -31,7 +31,7 @@ public class Rock : MonoBehaviour, IEnnemieObject
     }
 
     /*
-     * Désactive le rock
+     * Désactive la torpille
      */
     private void OnTriggerEnter2D(Collider2D collision)
     {

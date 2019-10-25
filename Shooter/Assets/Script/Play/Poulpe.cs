@@ -47,6 +47,7 @@ public class Poulpe : MonoBehaviour, IEnnemieObject
         this.inUse = false;
         this.transform.position = startCoord;
         this.gameObject.SetActive(false);
+        GM_Play.gm.poulpekKill++;
     }
 
     // Get Set de inUse

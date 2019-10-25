@@ -6,10 +6,10 @@ using UnityEngine;
 public struct ObjectPos
 {
     public int posX, posY;
-    public Object type;
+    public myGameObject type;
 }
 
-public enum Object
+public enum myGameObject
 {
     Shark,
     Poulpe,
@@ -19,13 +19,13 @@ public enum Object
 [CreateAssetMenu(fileName = "Level_n°.asset", menuName = "Custom/GenerateLevel", order = 100)]
 public class Level : ScriptableObject
 {
-    public TextAsset level;
+    public TextAsset fichierLevel;
     public List<ObjectPos> objects;
 
     /*
      * Constructeur d'ObjectPos
      */
-    public static ObjectPos newObjectPos (int posX, int posY, Object type)
+    public static ObjectPos newObjectPos (int posX, int posY, myGameObject type)
     {
         ObjectPos elem = new ObjectPos();
         elem.posX = posX;

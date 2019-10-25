@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using UnityEditorInternal;
 
 [CanEditMultipleObjects]
 [CustomEditor(typeof(GM_Play))]
 public class GM_PlayEditor : Editor
 {
     SerializedProperty arrayLevels;
+    ReorderableList levels;
+
+    SerializedProperty questsProperty;
 
     // Vitesse des elem de jeu
     SerializedProperty poulpeAndRockSpeedProperty;
@@ -22,12 +26,6 @@ public class GM_PlayEditor : Editor
     SerializedProperty SubmarinePosXProperty;
     SerializedProperty UpPosYProperty;
     SerializedProperty DownPosYProperty;
-    // Position des elem de jeu en X - Y
-    SerializedProperty posX_StartMapProperty;
-    SerializedProperty posX_EndMapProperty;
-    SerializedProperty posX_SubmarineProperty;
-    SerializedProperty posY_UpProperty;
-    SerializedProperty posY_DownProperty;
 
     // Decallage entre lanceur et projectile
     SerializedProperty shiftProperty;
@@ -42,7 +40,15 @@ public class GM_PlayEditor : Editor
     private void OnEnable()
     {
         arrayLevels = serializedObject.FindProperty("levels");
-        
+
+        levels = new ReorderableList(serializedObject: serializedObject, elements: arrayLevels, draggable: true, displayHeader: true, displayAddButton: true, displayRemoveButton: true);
+        levels.drawHeaderCallback += DrawHeaderCallback;
+        levels.drawElementCallback += DrawElementCallback;
+        levels.onAddCallback += OnAddCallback;
+        levels.onRemoveCallback += OnRemoveCallback;
+
+        questsProperty = serializedObject.FindProperty("quests");
+
         poulpeAndRockSpeedProperty = serializedObject.FindProperty("poulpeAndRockSpeed");
         torpedoSpeedProperty = serializedObject.FindProperty("torpedoSpeed");
         submarineSpeedProperty = serializedObject.FindProperty("submarineSpeed");
@@ -63,28 +69,74 @@ public class GM_PlayEditor : Editor
         timeBetweenShootProperty = serializedObject.FindProperty("timeBetweenShoot");
 
     }
-    
+
+    private void OnDisable()
+    {
+        levels.drawHeaderCallback -= DrawHeaderCallback;
+        levels.drawElementCallback -= DrawElementCallback;
+
+        levels.onAddCallback -= OnAddCallback;
+        levels.onRemoveCallback -= OnRemoveCallback;
+    }       
+
+    /*
+     * Affiche le nom de la box
+     */
+    private void DrawHeaderCallback(Rect rect)
+    {
+        EditorGUI.LabelField(rect, "Levels");
+    }
+
+    /*
+     * Affiche les elem de la ReorderableList
+     */
+    private void DrawElementCallback(Rect rect, int index, bool isactive, bool isfocused)
+    {
+        //Get the element we want to draw from the list.
+        SerializedProperty element = levels.serializedProperty.GetArrayElementAtIndex(index);
+        rect.y += 2;
+
+        //We get the name property of our element so we can display this in our list.
+        string elementTitle = element.objectReferenceValue == null ? "New Level" : element.objectReferenceValue.name;
+        
+        //Draw the list item as a property field, just like Unity does internally.
+        EditorGUI.PropertyField(position: new Rect(rect.x += 10, rect.y, Screen.width * .8f, 
+                                                    height: EditorGUIUtility.singleLineHeight), 
+                                                    property: element, 
+                                                    label: new GUIContent(elementTitle), includeChildren: true);
+    }
+
+    /*
+     * Ajoute un elem a la ReorderableList
+     */
+    private void OnAddCallback(ReorderableList list)
+    {
+        //Insert an extra item add the end of our list.
+        int index = list.serializedProperty.arraySize;
+        list.serializedProperty.arraySize++;
+        list.index = index;
+
+        list.serializedProperty.DeleteArrayElementAtIndex(index);
+    }
+
+    /*
+     * Remove un elem a la ReorderableList
+     */
+    private void OnRemoveCallback(ReorderableList list)
+    {
+        var index = list.serializedProperty.arraySize;
+        list.serializedProperty.arraySize--;
+        list.index = index;
+    }
+
     public override void OnInspectorGUI()
     {
         serializedObject.Update();
-
-        arrayLevels.arraySize = EditorGUILayout.IntField("Number of Levels : ", arrayLevels.arraySize);
-        if (arrayLevels.arraySize > 0)
-        {
-            foldoutcolor = EditorGUILayout.Foldout(foldoutcolor, "Table of Levels", true);
-
-            if (foldoutcolor)
-            {
-                EditorGUI.indentLevel += 2;
-                for (int i = 1; i <= arrayLevels.arraySize; i++)
-                {
-                    SerializedProperty currentElem = arrayLevels.GetArrayElementAtIndex(i-1);
-                    EditorGUILayout.PropertyField(currentElem, new GUIContent("Level n°" + i));
-                }
-                EditorGUI.indentLevel -= 2;
-            }
-        }
         
+        levels.DoLayoutList();
+
+        EditorGUILayout.PropertyField(questsProperty);
+
         EditorGUILayout.PropertyField(poulpeAndRockSpeedProperty);
         EditorGUILayout.PropertyField(torpedoSpeedProperty);
         EditorGUILayout.PropertyField(submarineSpeedProperty);

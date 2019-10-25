@@ -31,6 +31,20 @@ public class Torpedo : MonoBehaviour, IEnnemieObject
         }
     }
 
+    /*
+     * Désactive la torpille
+     */
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!collision.gameObject.TryGetComponent(out Ink ink))
+        {
+            this.inUse = false;
+            this.transform.position = startCoord;
+            this.gameObject.SetActive(false);
+        }
+
+    }
+
     // Get Set de inUse
     public bool isinUse()
     {

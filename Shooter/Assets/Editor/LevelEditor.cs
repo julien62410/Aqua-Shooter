@@ -15,10 +15,10 @@ public class LevelEditor : Editor
 
     public override void OnInspectorGUI()
     {
-        myLevel.level = EditorGUILayout.ObjectField("Level : ", myLevel.level, typeof(TextAsset), false) as TextAsset;
+        myLevel.fichierLevel = EditorGUILayout.ObjectField("Level : ", myLevel.fichierLevel, typeof(TextAsset), false) as TextAsset;
 
         if (GUILayout.Button("Load Level"))
-            if (myLevel.level != null)
+            if (myLevel.fichierLevel != null)
                 GenerateLevel();
 
         if (myLevel.objects != null && myLevel.objects.Count != 0)
@@ -36,7 +36,7 @@ public class LevelEditor : Editor
 
         Undo.RecordObject(myLevel, "test");
 
-        string rawContent = myLevel.level.text;
+        string rawContent = myLevel.fichierLevel.text;
         string[] lineList = rawContent.Split(new string[] { "\n" }, System.StringSplitOptions.None);
 
         string[] separator = new string[] { "," };
@@ -48,7 +48,7 @@ public class LevelEditor : Editor
 
             ObjectPos Object = new ObjectPos();
 
-            Object.type = cells[0] == "Shark" ? global::Object.Shark : (cells[0] == "Poulpe" ? global::Object.Poulpe : global::Object.Rock);
+            Object.type = cells[0] == "Shark" ? myGameObject.Shark : (cells[0] == "Poulpe" ? myGameObject.Poulpe : myGameObject.Rock);
 
             int posX = 0;
             int.TryParse(cells[1], out posX);

@@ -57,11 +57,11 @@ public class LevelEditorWindow : EditorWindow
                 IEnumerable<ObjectPos> temp = currentLevel.objects.Where(elem => elem.posX == i && elem.posY == j);
                 
                 if (temp.Count() != 0) 
-                    if (temp.First().type == Object.Poulpe)
+                    if (temp.First().type == myGameObject.Poulpe)
                         GUI.color = Color.red;
-                    else if (temp.First().type == Object.Shark)
+                    else if (temp.First().type == myGameObject.Shark)
                         GUI.color = Color.blue;
-                    else if (temp.First().type == Object.Rock)
+                    else if (temp.First().type == myGameObject.Rock)
                         GUI.color = Color.green;
 
                 if (GUILayout.Button(""))
@@ -106,7 +106,7 @@ public class LevelEditorWindow : EditorWindow
         noneObject(obj);
 
         Tuple<int, int> elems = (Tuple<int, int>)obj;
-        currentLevel.objects.Add(Level.newObjectPos(elems.Item1, elems.Item2, Object.Shark));
+        currentLevel.objects.Add(Level.newObjectPos(elems.Item1, elems.Item2, myGameObject.Shark));
     }
 
     /*
@@ -117,7 +117,7 @@ public class LevelEditorWindow : EditorWindow
         noneObject(obj);
 
         Tuple<int, int> elems = (Tuple<int, int>)obj;
-        currentLevel.objects.Add(Level.newObjectPos(elems.Item1, elems.Item2, Object.Poulpe));
+        currentLevel.objects.Add(Level.newObjectPos(elems.Item1, elems.Item2, myGameObject.Poulpe));
     }
 
     /*
@@ -128,7 +128,7 @@ public class LevelEditorWindow : EditorWindow
         noneObject(obj);
 
         Tuple<int, int> elems = (Tuple<int, int>)obj;
-        currentLevel.objects.Add(Level.newObjectPos(elems.Item1, elems.Item2, Object.Rock));
+        currentLevel.objects.Add(Level.newObjectPos(elems.Item1, elems.Item2, myGameObject.Rock));
     }
 
     private void AfficheSpace()

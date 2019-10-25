@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3efd88ddf40a9e8429d9b7f41f5dc51f, type: 3}
+  m_Name: Quests
+  m_EditorClassIdentifier: 
+  fichierQuests: {fileID: 4900000, guid: ea335a6effe04994db0d5ccf6c187794, type: 3}
+  objects:
+  - description: Tuer 5 Sharks
+    number: 5
+    type: 0
+  - description: Tuer 6 Sharks
+    number: 6
+    type: 0
+  - description: Tuer 7 Sharks
+    number: 7
+    type: 0
+  - description: Tuer 8 Sharks
+    number: 8
+    type: 0
+  - description: Tuer 9 Sharks
+    number: 9
+    type: 0
+  - description: Tuer 10 Sharks
+    number: 10
+    type: 0
+  - description: Tuer 5 Poulpe
+    number: 5
+    type: 1
+  - description: Tuer 6 Poulpe
+    number: 6
+    type: 1
+  - description: Tuer 7 Poulpe
+    number: 7
+    type: 1
+  - description: Tuer 8 Poulpe
+    number: 8
+    type: 1
+  - description: Tuer 9 Poulpe
+    number: 9
+    type: 1
+  - description: Tuer 10 Poulpe
+    number: 10
+    type: 1

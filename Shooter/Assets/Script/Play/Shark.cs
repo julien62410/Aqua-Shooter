@@ -38,6 +38,7 @@ public class Shark : MonoBehaviour, IEnnemieObject
         this.inUse = false;
         this.transform.position = startCoord;
         this.gameObject.SetActive(false);
+        GM_Play.gm.sharkKill++;
     }
 
     // Get Set de inUse

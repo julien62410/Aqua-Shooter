@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5515840550607014640}
   - component: {fileID: 5499855695046599752}
   - component: {fileID: 817686346412319354}
-  - component: {fileID: 2348862193415929095}
+  - component: {fileID: 2287443355662899522}
   m_Layer: 0
   m_Name: Rock
   m_TagString: Untagged
@@ -94,8 +94,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cec226705917584a88f0ca01bdec664, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!68 &2348862193415929095
-EdgeCollider2D:
+--- !u!70 &2287443355662899522
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -107,18 +107,6 @@ EdgeCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: -2.5738463, y: -2.3261342}
-  - {x: -2.88592, y: -1.9177645}
-  - {x: -2.7795844, y: -0.462267}
-  - {x: -1.7672567, y: 1.7599458}
-  - {x: -0.80706376, y: 2.4555268}
-  - {x: 0.08633357, y: 2.747343}
-  - {x: 1.9866737, y: 1.7826635}
-  - {x: 2.828595, y: -0.12589563}
-  - {x: 2.4559193, y: -2.0777514}
-  - {x: 1.1148381, y: -2.699471}
-  - {x: -0.7861227, y: -2.6815145}
-  - {x: -2.563031, y: -2.3584409}
+  m_Offset: {x: 0, y: -0.14}
+  m_Size: {x: 5.21, y: 3.93}
+  m_Direction: 0
