@@ -75,39 +75,40 @@
     <Compile Include="Assets\Script\Play\SubmarineController.cs" />
     <Compile Include="Assets\Script\Play\Torpedo.cs" />
     <Compile Include="Assets\Script\Start\GM_Start.cs" />
+    <Compile Include="Assets\Script\Start\HighScore.cs" />
     <Compile Include="Assets\Script\Start\Quit.cs" />
     <Compile Include="Assets\Script\Start\Retour.cs" />
     <Compile Include="Assets\Script\Start\Score.cs" />
     <Compile Include="Assets\Script\Start\Start.cs" />
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>C:/Users/j.crepin/Desktop/AquaShooter/Aqua-Shooter/Shooter/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>C:/Users/j.crepin/Desktop/Aqua-Shooter/Shooter/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>C:/Users/j.crepin/Desktop/AquaShooter/Aqua-Shooter/Shooter/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>C:/Users/j.crepin/Desktop/Aqua-Shooter/Shooter/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/j.crepin/Desktop/AquaShooter/Aqua-Shooter/Shooter/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/j.crepin/Desktop/Aqua-Shooter/Shooter/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>C:/Users/j.crepin/Desktop/AquaShooter/Aqua-Shooter/Shooter/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>C:/Users/j.crepin/Desktop/Aqua-Shooter/Shooter/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>C:/Users/j.crepin/Desktop/AquaShooter/Aqua-Shooter/Shooter/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>C:/Users/j.crepin/Desktop/Aqua-Shooter/Shooter/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/Users/j.crepin/Desktop/AquaShooter/Aqua-Shooter/Shooter/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>C:/Users/j.crepin/Desktop/Aqua-Shooter/Shooter/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>C:/Users/j.crepin/Desktop/AquaShooter/Aqua-Shooter/Shooter/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <HintPath>C:/Users/j.crepin/Desktop/Aqua-Shooter/Shooter/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Sprite.Editor">
-      <HintPath>C:/Users/j.crepin/Desktop/AquaShooter/Aqua-Shooter/Shooter/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
+      <HintPath>C:/Users/j.crepin/Desktop/Aqua-Shooter/Shooter/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/j.crepin/Desktop/AquaShooter/Aqua-Shooter/Shooter/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/j.crepin/Desktop/Aqua-Shooter/Shooter/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>C:/Users/j.crepin/Desktop/AquaShooter/Aqua-Shooter/Shooter/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>C:/Users/j.crepin/Desktop/Aqua-Shooter/Shooter/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -285,9 +286,6 @@
     </Reference>
     <Reference Include="UnityEngine.XRModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.Data.Sqlite">
-      <HintPath>C:/Users/j.crepin/Desktop/AquaShooter/Aqua-Shooter/Shooter/Assets/Plugins/Mono.Data.Sqlite.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.6f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>

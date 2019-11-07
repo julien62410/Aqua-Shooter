@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
+using System.Data;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -15,15 +15,19 @@ public class GM_Play : MonoBehaviour
     public SubmarineController submarine;
     public List<Level> levels;
 
+    [Header("Score")]
+    public HighScore highScores;
     [Header("Quests")]
     public Quests quests;
+
     public int poulpekKill = 0;
     public int sharkKill = 0;
     private int actualQuests = -1;
     private bool firstLoad = true;
 
     //score de la partie
-    public int score = 0;
+    public float score = 0;
+    public int bonus = 0;
 
     // Vitesse des elem de jeu
     public float backgroundSpeed = 2f;
@@ -75,7 +79,6 @@ public class GM_Play : MonoBehaviour
     public float displayInk = 0;
     [Range(0.1f, 2)]
     public float timeBetweenShoot = 1.5f;
-    public float removeIntoTime = 0.01f;
     
     // Timer pour les levels et les quests
     private int actualLevel = -1;
@@ -98,6 +101,8 @@ public class GM_Play : MonoBehaviour
      */
     void Start()
     {
+        highScores = new HighScore();
+
         Attribute();
         Init();
     }
@@ -106,9 +111,7 @@ public class GM_Play : MonoBehaviour
      * update le score
      */
     void Update()
-    {
-        score++;
-        
+    {        
         timer += Time.deltaTime;
         if ((timer > timeBeforeQuests && timer < timeBeforeQuests + timeAfficheQuests) || timer < 0)
         {
@@ -125,6 +128,8 @@ public class GM_Play : MonoBehaviour
             GlobalInvoke(actualLevel);
             timer = 0;
         }
+
+        score += Time.deltaTime;
     }
 
     /*
@@ -226,7 +231,7 @@ public class GM_Play : MonoBehaviour
      */
     public void Lose()
     {
-        GM_Start.gm.ConnectWrite();
+        ConnectWrite();
         StartCoroutine(DisplayScore());
     }
 
@@ -234,7 +239,7 @@ public class GM_Play : MonoBehaviour
     {
         Time.timeScale = 0.01f;
 
-        scoreGame.text += score;
+        scoreGame.text += (int)score + "\nBonus : " + bonus + "\nHighScore : " + PlayerPrefs.GetInt("highScore"); ;
         scoreGame.gameObject.SetActive(true);
         yield return new WaitForSeconds(0.03f);
         scoreGame.text = "Score : ";
@@ -253,8 +258,14 @@ public class GM_Play : MonoBehaviour
         TextQuests.text = "";
         TextQuests.gameObject.SetActive(true);
 
-        if (actualQuests == -1 || ConditionComplete())
+        if (actualQuests == -1)
             actualQuests = (UnityEngine.Random.Range(1, quests.objects.Count) - 1);
+
+        if (ConditionComplete())
+        {
+            bonus += 10;
+            actualQuests = (UnityEngine.Random.Range(1, quests.objects.Count) - 1);
+        }
 
         TextQuests.text = quests.objects[actualQuests].description +
                             "\n" + (quests.objects[actualQuests].type == Enemy.Shark ? sharkKill.ToString() : poulpekKill.ToString()) +
@@ -275,5 +286,15 @@ public class GM_Play : MonoBehaviour
         }
         
         return false;
+    }
+
+    /*
+     * Ecrit dans la base de donnée le nouveau score
+     */
+    public void ConnectWrite()
+    {
+        if (!PlayerPrefs.HasKey("highScore") || (score + bonus) > PlayerPrefs.GetInt("highScore"))
+            PlayerPrefs.SetInt("highScore", ((int)score + bonus));
+            
     }
 }

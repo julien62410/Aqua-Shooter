@@ -7681,6 +7681,7 @@ MonoBehaviour:
   poulpekKill: 0
   sharkKill: 0
   score: 0
+  bonus: 0
   backgroundSpeed: 2
   poulpeAndRockSpeed: 3
   torpedoSpeed: 5
@@ -7704,7 +7705,6 @@ MonoBehaviour:
   timeInk: 3
   displayInk: 0
   timeBetweenShoot: 1.5
-  removeIntoTime: 0.01
 --- !u!4 &427777928
 Transform:
   m_ObjectHideFlags: 0
@@ -30292,15 +30292,15 @@ RectTransform:
   m_GameObject: {fileID: 1497445637}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.3025, y: 0.3025, z: 0.3025}
   m_Children: []
   m_Father: {fileID: 1513204925}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0075073, y: -0.0025635}
-  m_SizeDelta: {x: 1920, y: 1080}
+  m_AnchoredPosition: {x: -0.0054932, y: 0.0036945}
+  m_SizeDelta: {x: 6347.1, y: 3567}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1497445639
 MonoBehaviour:
@@ -30322,11 +30322,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 100
+    m_FontSize: 300
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 1
-    m_MaxSize: 100
+    m_MaxSize: 300
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -30471,10 +30471,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -32359,15 +32359,15 @@ RectTransform:
   m_GameObject: {fileID: 1599388381}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.35, y: 0.34125, z: 0.35}
   m_Children: []
   m_Father: {fileID: 1513204925}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.015014648, y: -0.00012207031}
-  m_SizeDelta: {x: 1920, y: 1080}
+  m_AnchoredPosition: {x: 0.0080819, y: -0.00098991}
+  m_SizeDelta: {x: 5485.7, y: 3164.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1599388383
 MonoBehaviour:
@@ -32389,11 +32389,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 100
+    m_FontSize: 300
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 1
-    m_MaxSize: 100
+    m_MaxSize: 300
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1

@@ -11,6 +11,7 @@ public class GM_PlayEditor : Editor
     SerializedProperty arrayLevels;
     ReorderableList levels;
 
+    SerializedProperty scoreProperty;
     SerializedProperty questsProperty;
 
     // Vitesse des elem de jeu
@@ -47,6 +48,7 @@ public class GM_PlayEditor : Editor
         levels.onAddCallback += OnAddCallback;
         levels.onRemoveCallback += OnRemoveCallback;
 
+        scoreProperty = serializedObject.FindProperty("highScores");
         questsProperty = serializedObject.FindProperty("quests");
 
         poulpeAndRockSpeedProperty = serializedObject.FindProperty("poulpeAndRockSpeed");
@@ -135,6 +137,7 @@ public class GM_PlayEditor : Editor
         
         levels.DoLayoutList();
 
+        EditorGUILayout.PropertyField(scoreProperty);
         EditorGUILayout.PropertyField(questsProperty);
 
         EditorGUILayout.PropertyField(poulpeAndRockSpeedProperty);
